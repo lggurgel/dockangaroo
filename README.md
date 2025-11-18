@@ -471,8 +471,8 @@ This project is provided for **educational and research purposes**.
 
 ## 📞 Support & Community
 
-- **Issues**: [GitHub Issues](https://github.com/yourusername/dockangaroo/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/yourusername/dockangaroo/discussions)
+- **Issues**: [GitHub Issues](https://github.com/lggurgel/dockangaroo/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/lggurgel/dockangaroo/discussions)
 - **Bitcoin Puzzle Info**: https://privatekeys.pw/puzzles/bitcoin-puzzle-tx
 
 ---
