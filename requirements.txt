@@ -1,0 +1,16 @@
+# Bitcoin Puzzle 135 Solver - Python Dependencies
+# Optimized for Apple M1 Silicon (ARM64)
+
+# Coincurve - Fast secp256k1 bindings (optimized for ARM64)
+# This is the fastest ECDSA library for M1 Macs
+coincurve>=20.0.0
+
+# Optional: For additional Bitcoin utilities
+# bitcoin>=1.1.42
+
+# For better performance monitoring
+psutil>=5.9.0
+
+# For colored terminal output (optional)
+colorama>=0.4.6
+

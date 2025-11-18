@@ -1,0 +1,71 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Working data (generated during solving - DO NOT COMMIT)
+kangaroo_work/*
+!kangaroo_work/.gitkeep
+distinguished_points/*
+!distinguished_points/.gitkeep
+results/*
+!results/.gitkeep
+checkpoints/
+checkpoints_backup*/
+backups/
+
+# Work files
+*.work
+*_dp.txt
+*.dp
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.bak
+
+# Kangaroo source (cloned during Docker build)
+kangaroo/
+
+# Local config overrides (optional)
+config.local.env
+
+# Backup archives
+backup-*.tar.gz

@@ -1,0 +1,43 @@
+# Git
+.git
+.gitignore
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+*.egg-info/
+dist/
+build/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Working data (keep out of Docker images)
+kangaroo_work/
+distinguished_points/
+results/
+
+# Logs
+*.log
+
+# Documentation (not needed in container)
+*.md
+!README.md
+
+# Config (will be mounted as volume)
+config.env
+

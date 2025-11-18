@@ -1,0 +1,49 @@
+# Dockerfile for Bitcoin Puzzle 135 Solver with Kangaroo
+# Builds Jean-Luc Pons' Kangaroo and Python wrapper
+# Note: Kangaroo uses Intel-specific intrinsics, so we run via x86-64 emulation on M1
+# This uses Rosetta 2 translation and will be slower, but it works
+
+FROM --platform=linux/amd64 ubuntu:22.04
+
+# Prevent interactive prompts during build
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Set working directory
+WORKDIR /app
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    git \
+    make \
+    g++ \
+    libgmp-dev \
+    libssl-dev \
+    python3 \
+    python3-pip \
+    && rm -rf /var/lib/apt/lists/*
+
+# Clone and build Kangaroo
+RUN git clone https://github.com/JeanLucPons/Kangaroo.git kangaroo && \
+    cd kangaroo && \
+    # Build using x86-64 (works via Rosetta 2 emulation on M1)
+    make
+
+# Install Python dependencies
+COPY requirements.txt .
+RUN pip3 install --no-cache-dir -r requirements.txt
+
+# Copy wrapper script
+COPY kangaroo_wrapper.py .
+RUN chmod +x kangaroo_wrapper.py
+
+# Create directories
+RUN mkdir -p kangaroo_work distinguished_points results
+
+# Environment variables
+ENV NUM_WORKERS=10
+ENV WORKER_ID=0
+
+# Run the wrapper
+CMD ["python3", "-u", "kangaroo_wrapper.py"]
+

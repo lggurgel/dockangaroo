@@ -1,0 +1,71 @@
+version: '3.8'
+
+# Bitcoin Puzzle Solver - GPU Edition
+# Requires NVIDIA GPU with CUDA support
+# All configuration is in config.env
+
+services:
+  # GPU Worker 0
+  kangaroo-gpu-worker-0:
+    build:
+      context: .
+      dockerfile: Dockerfile.kangaroo-gpu
+    container_name: btc_kangaroo_gpu_worker_0
+    env_file:
+      - config.env
+    environment:
+      - WORKER_ID=0
+      - GPU_ENABLED=1
+      - GPU_DEVICE=0
+    volumes:
+      - ./kangaroo_work:/app/kangaroo_work
+      - ./distinguished_points:/app/distinguished_points
+      - ./results:/app/results
+    restart: unless-stopped
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+
+  # GPU Worker 1 (if you have multiple GPUs)
+  kangaroo-gpu-worker-1:
+    build:
+      context: .
+      dockerfile: Dockerfile.kangaroo-gpu
+    container_name: btc_kangaroo_gpu_worker_1
+    env_file:
+      - config.env
+    environment:
+      - WORKER_ID=1
+      - GPU_ENABLED=1
+      - GPU_DEVICE=1
+    volumes:
+      - ./kangaroo_work:/app/kangaroo_work
+      - ./distinguished_points:/app/distinguished_points
+      - ./results:/app/results
+    restart: unless-stopped
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+
+# Shared volumes
+volumes:
+  kangaroo_work:
+  distinguished_points:
+  results:
+
+# USAGE:
+# 1. Install NVIDIA Docker runtime: https://github.com/NVIDIA/nvidia-docker
+# 2. Set GPU_ENABLED=1 in config.env
+# 3. Run: docker-compose -f docker-compose.gpu.yml up -d --build
+# 4. Monitor: python3 kangaroo_monitor.py
+#
+# NOTE: Adjust number of workers based on your GPU count
+

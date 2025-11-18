@@ -1,0 +1,221 @@
+version: '3.8'
+
+# Bitcoin Puzzle Solver - Kangaroo Edition
+# All configuration is in config.env
+
+services:
+  # Worker 0
+  kangaroo-worker-0:
+    build:
+      context: .
+      dockerfile: Dockerfile.kangaroo
+    container_name: btc_kangaroo_worker_0
+    env_file:
+      - config.env
+    environment:
+      - WORKER_ID=0
+    volumes:
+      - ./kangaroo_work:/app/kangaroo_work
+      - ./distinguished_points:/app/distinguished_points
+      - ./results:/app/results
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '${CPUS_PER_WORKER:-1.0}'
+          memory: '${MEMORY_PER_WORKER:-2}G'
+
+  # Worker 1
+  kangaroo-worker-1:
+    build:
+      context: .
+      dockerfile: Dockerfile.kangaroo
+    container_name: btc_kangaroo_worker_1
+    env_file:
+      - config.env
+    environment:
+      - WORKER_ID=1
+    volumes:
+      - ./kangaroo_work:/app/kangaroo_work
+      - ./distinguished_points:/app/distinguished_points
+      - ./results:/app/results
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '${CPUS_PER_WORKER:-1.0}'
+          memory: '${MEMORY_PER_WORKER:-2}G'
+
+  # Worker 2
+  kangaroo-worker-2:
+    build:
+      context: .
+      dockerfile: Dockerfile.kangaroo
+    container_name: btc_kangaroo_worker_2
+    env_file:
+      - config.env
+    environment:
+      - WORKER_ID=2
+    volumes:
+      - ./kangaroo_work:/app/kangaroo_work
+      - ./distinguished_points:/app/distinguished_points
+      - ./results:/app/results
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '${CPUS_PER_WORKER:-1.0}'
+          memory: '${MEMORY_PER_WORKER:-2}G'
+
+  # Worker 3
+  kangaroo-worker-3:
+    build:
+      context: .
+      dockerfile: Dockerfile.kangaroo
+    container_name: btc_kangaroo_worker_3
+    env_file:
+      - config.env
+    environment:
+      - WORKER_ID=3
+    volumes:
+      - ./kangaroo_work:/app/kangaroo_work
+      - ./distinguished_points:/app/distinguished_points
+      - ./results:/app/results
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '${CPUS_PER_WORKER:-1.0}'
+          memory: '${MEMORY_PER_WORKER:-2}G'
+
+  # Worker 4
+  kangaroo-worker-4:
+    build:
+      context: .
+      dockerfile: Dockerfile.kangaroo
+    container_name: btc_kangaroo_worker_4
+    env_file:
+      - config.env
+    environment:
+      - WORKER_ID=4
+    volumes:
+      - ./kangaroo_work:/app/kangaroo_work
+      - ./distinguished_points:/app/distinguished_points
+      - ./results:/app/results
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '${CPUS_PER_WORKER:-1.0}'
+          memory: '${MEMORY_PER_WORKER:-2}G'
+
+  # Worker 5
+  kangaroo-worker-5:
+    build:
+      context: .
+      dockerfile: Dockerfile.kangaroo
+    container_name: btc_kangaroo_worker_5
+    env_file:
+      - config.env
+    environment:
+      - WORKER_ID=5
+    volumes:
+      - ./kangaroo_work:/app/kangaroo_work
+      - ./distinguished_points:/app/distinguished_points
+      - ./results:/app/results
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '${CPUS_PER_WORKER:-1.0}'
+          memory: '${MEMORY_PER_WORKER:-2}G'
+
+  # Worker 6
+  kangaroo-worker-6:
+    build:
+      context: .
+      dockerfile: Dockerfile.kangaroo
+    container_name: btc_kangaroo_worker_6
+    env_file:
+      - config.env
+    environment:
+      - WORKER_ID=6
+    volumes:
+      - ./kangaroo_work:/app/kangaroo_work
+      - ./distinguished_points:/app/distinguished_points
+      - ./results:/app/results
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '${CPUS_PER_WORKER:-1.0}'
+          memory: '${MEMORY_PER_WORKER:-2}G'
+
+  # Worker 7
+  kangaroo-worker-7:
+    build:
+      context: .
+      dockerfile: Dockerfile.kangaroo
+    container_name: btc_kangaroo_worker_7
+    env_file:
+      - config.env
+    environment:
+      - WORKER_ID=7
+    volumes:
+      - ./kangaroo_work:/app/kangaroo_work
+      - ./distinguished_points:/app/distinguished_points
+      - ./results:/app/results
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '${CPUS_PER_WORKER:-1.0}'
+          memory: '${MEMORY_PER_WORKER:-2}G'
+
+  # Worker 8
+  kangaroo-worker-8:
+    build:
+      context: .
+      dockerfile: Dockerfile.kangaroo
+    container_name: btc_kangaroo_worker_8
+    env_file:
+      - config.env
+    environment:
+      - WORKER_ID=8
+    volumes:
+      - ./kangaroo_work:/app/kangaroo_work
+      - ./distinguished_points:/app/distinguished_points
+      - ./results:/app/results
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '${CPUS_PER_WORKER:-1.0}'
+          memory: '${MEMORY_PER_WORKER:-2}G'
+
+  # Worker 9
+  kangaroo-worker-9:
+    build:
+      context: .
+      dockerfile: Dockerfile.kangaroo
+    container_name: btc_kangaroo_worker_9
+    env_file:
+      - config.env
+    environment:
+      - WORKER_ID=9
+    volumes:
+      - ./kangaroo_work:/app/kangaroo_work
+      - ./distinguished_points:/app/distinguished_points
+      - ./results:/app/results
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '${CPUS_PER_WORKER:-1.0}'
+          memory: '${MEMORY_PER_WORKER:-2}G'
+
+# Shared volumes
+volumes:
+  kangaroo_work:
+  distinguished_points:
+  results:

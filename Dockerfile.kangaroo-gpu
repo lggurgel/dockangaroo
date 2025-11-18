@@ -1,0 +1,43 @@
+# GPU-enabled Kangaroo Docker image
+# Requires: NVIDIA GPU + CUDA support
+
+FROM nvidia/cuda:11.8.0-devel-ubuntu22.04
+
+WORKDIR /app
+
+# Install dependencies
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    git \
+    make \
+    g++ \
+    libgmp-dev \
+    libssl-dev \
+    python3 \
+    python3-pip \
+    && rm -rf /var/lib/apt/lists/*
+
+# Clone and build Kangaroo with GPU support
+RUN git clone https://github.com/JeanLucPons/Kangaroo.git kangaroo && \
+    cd kangaroo && \
+    make gpu=1 CCAP=75 && \
+    cp kangaroo /app/kangaroo
+
+# Note: CCAP depends on your GPU
+# - Tesla T4 (AWS g4): CCAP=75
+# - RTX 3090: CCAP=86
+# - RTX 4090: CCAP=89
+# Check: https://developer.nvidia.com/cuda-gpus
+
+# Copy Python wrapper and requirements
+COPY requirements.txt .
+RUN pip3 install --no-cache-dir -r requirements.txt
+
+COPY kangaroo_wrapper.py .
+RUN chmod +x kangaroo_wrapper.py
+
+# Create working directories
+RUN mkdir -p kangaroo_work distinguished_points results
+
+CMD ["python3", "-u", "kangaroo_wrapper.py"]
+
